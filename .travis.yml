@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+    - "12"
+install:
+    - npm install @quasar/cli
+script:
+    - quasar build
+after_failure:
+  - cat /home/travis/.npm/_logs/*-debug.log
+cache:
+    directories:
+        - "node_modules"
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: dist/spa
+  github_token: $GITHUB_TOKEN
+  repo: machinable-org/app
+  keep_history: false
+  target_branch: gh-pages
+  on:
+    branch: master
