@@ -5,6 +5,7 @@ install:
     - npm install @quasar/cli
 script:
     - quasar build
+    - '"app.machinable.org" >> dist/spa/CNAME'
 after_failure:
   - cat /home/travis/.npm/_logs/*-debug.log
 cache:
